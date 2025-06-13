@@ -7,7 +7,7 @@ toolchain go1.24.3
 require (
 	github.com/Motmedel/ecs_go v0.0.63
 	github.com/Motmedel/utils_go v0.0.206
-	github.com/florianl/go-nflog/v2 v2.1.0
+	github.com/florianl/go-nflog/v2 v2.1.1-0.20250403073945-ae5e7f00bd3a
 	github.com/mdlayher/netlink v1.7.2
 	github.com/vphpersson/firewall_logging v0.0.2
 )
