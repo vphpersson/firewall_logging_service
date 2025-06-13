@@ -1,7 +1,7 @@
 github.com/Motmedel/ecs_go v0.0.63 h1:nNtDZGrYIpt1EGyo34JiE97TJHZ58unsvZMwJaT63lk=
 github.com/Motmedel/ecs_go v0.0.63/go.mod h1:LBiQKqIHImB9hUAx6Ab7LcjbMFSxuU1ZFe9h5eCFs60=
-github.com/Motmedel/utils_go v0.0.205 h1:YkRyrVT5xKPnjaBsdbg6qD9ZyVIJPoNXorzR3EA7G5g=
-github.com/Motmedel/utils_go v0.0.205/go.mod h1:kKm8jM7GA8M7ICIImi5etOMixRgQfnStBPjEoCMTgbg=
+github.com/Motmedel/utils_go v0.0.206 h1:nY9tQYiW0VTt33F4lB/kLU8xCV7fD1Ju3fG2GmZ9p9k=
+github.com/Motmedel/utils_go v0.0.206/go.mod h1:kKm8jM7GA8M7ICIImi5etOMixRgQfnStBPjEoCMTgbg=
 github.com/Motmedel/utils_go/pkg/net/domain_breakdown v0.0.5 h1:57lx54tX6LbHjMNv0qGnwQB/eo7axhbDnd6rVWyWjxc=
 github.com/Motmedel/utils_go/pkg/net/domain_breakdown v0.0.5/go.mod h1:sRPKDiIl1+iQ0eT9amSQKzBdFWDFXtxi32mEvBPm4BU=
 github.com/florianl/go-nflog/v2 v2.1.0 h1:yXvA/ZWMS2dXBBM364xOEaW4WX14RjvsGCVt+y9O0ZM=
@@ -21,10 +21,10 @@ github.com/mdlayher/netlink v1.7.2/go.mod h1:xraEF7uJbxLhc5fpHL4cPe221LI2bdttWlU
 github.com/mdlayher/socket v0.1.1/go.mod h1:mYV5YIZAfHh4dzDVzI8x8tWLWCliuX8Mon5Awbj+qDs=
 github.com/mdlayher/socket v0.4.1 h1:eM9y2/jlbs1M615oshPQOHZzj6R6wMT7bX5NPiQvn2U=
 github.com/mdlayher/socket v0.4.1/go.mod h1:cAqeGjoufqdxWkD7DkpyS+wcefOtmu5OQ8KuoJGIReA=
-github.com/vphpersson/firewall_logging v0.0.1 h1:72dLcBrTfohBN8E+WTS4FoMHYymvEoUUXIupahH+TN8=
-github.com/vphpersson/firewall_logging v0.0.1/go.mod h1:I5oaRx5JMpbMW44ROUnfo7LT5u02D+ADDFwpwp0X/vo=
-github.com/vphpersson/packet_logging v0.0.2 h1:78Q2tgEL2hW+5F80iQKgI4QLbXbbraQUFr6RvaAcZVA=
-github.com/vphpersson/packet_logging v0.0.2/go.mod h1:TEF64wGIAxqEEkxRe5kAnyomcjLWbk3To4iTOVETGY0=
+github.com/vphpersson/firewall_logging v0.0.2 h1:DIr3TE2sDfBqAR9kajHyDSPTVwCx+fY7SQXSKIzhxjQ=
+github.com/vphpersson/firewall_logging v0.0.2/go.mod h1:m/1rZEelaUVNNqr3t+KveKQJSCy5WEvCiVu0qyYaDZc=
+github.com/vphpersson/packet_logging v0.0.3 h1:Fa2+yLACGBhk4ht+Q2S7gCC8+5snly1+gV5h5Mh+B6o=
+github.com/vphpersson/packet_logging v0.0.3/go.mod h1:MbNXq6eF3f8t0IbI53FKxcy1fRzTb+oE+E+sxuProjg=
 golang.org/x/net v0.0.0-20210928044308-7d9f5e0b762b/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
 golang.org/x/net v0.0.0-20220127200216-cd36cc0744dd/go.mod h1:CfG3xpIq0wQ8r1q4Su4UZFWDARRcnwPjda9FqA0JpMk=
 golang.org/x/net v0.40.0 h1:79Xs7wF06Gbdcg4kdCCIQArK11Z1hr5POQ6+fIYHNuY=
