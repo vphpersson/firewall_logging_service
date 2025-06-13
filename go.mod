@@ -9,7 +9,7 @@ require (
 	github.com/Motmedel/utils_go v0.0.206
 	github.com/florianl/go-nflog/v2 v2.1.1-0.20250403073945-ae5e7f00bd3a
 	github.com/mdlayher/netlink v1.7.2
-	github.com/vphpersson/firewall_logging v0.0.2
+	github.com/vphpersson/firewall_logging v0.0.4
 )
 
 require (

@@ -23,6 +23,8 @@ github.com/mdlayher/socket v0.4.1 h1:eM9y2/jlbs1M615oshPQOHZzj6R6wMT7bX5NPiQvn2U
 github.com/mdlayher/socket v0.4.1/go.mod h1:cAqeGjoufqdxWkD7DkpyS+wcefOtmu5OQ8KuoJGIReA=
 github.com/vphpersson/firewall_logging v0.0.2 h1:DIr3TE2sDfBqAR9kajHyDSPTVwCx+fY7SQXSKIzhxjQ=
 github.com/vphpersson/firewall_logging v0.0.2/go.mod h1:m/1rZEelaUVNNqr3t+KveKQJSCy5WEvCiVu0qyYaDZc=
+github.com/vphpersson/firewall_logging v0.0.4 h1:XViKcvOhMRFFVA9SIHSSks9dZVOtlRwADRWmIT/1JKw=
+github.com/vphpersson/firewall_logging v0.0.4/go.mod h1:8P1qfNUo6O/hy6J8Va4Xqn2aEqShK/xkOAS2RYGWyHM=
 github.com/vphpersson/packet_logging v0.0.3 h1:Fa2+yLACGBhk4ht+Q2S7gCC8+5snly1+gV5h5Mh+B6o=
 github.com/vphpersson/packet_logging v0.0.3/go.mod h1:MbNXq6eF3f8t0IbI53FKxcy1fRzTb+oE+E+sxuProjg=
 golang.org/x/net v0.0.0-20210928044308-7d9f5e0b762b/go.mod h1:9nx3DQGgdP8bBQD5qxJ1jj9UTztislL4KSBs9R2vV5Y=
