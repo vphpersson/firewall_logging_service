@@ -5,17 +5,19 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/Motmedel/ecs_go/ecs"
-	motmedelErrors "github.com/Motmedel/utils_go/pkg/errors"
-	motmedelLog "github.com/Motmedel/utils_go/pkg/log"
-	motmedelErrorLogger "github.com/Motmedel/utils_go/pkg/log/error_logger"
-	"github.com/florianl/go-nflog/v2"
-	"github.com/mdlayher/netlink"
-	"github.com/vphpersson/firewall_logging/pkg/firewall_logging"
 	"log/slog"
 	"os"
 	"sync"
 	"time"
+
+	motmedelErrors "github.com/Motmedel/utils_go/pkg/errors"
+	motmedelLog "github.com/Motmedel/utils_go/pkg/log"
+	motmedelErrorLogger "github.com/Motmedel/utils_go/pkg/log/error_logger"
+	"github.com/Motmedel/utils_go/pkg/schema"
+	schemaLog "github.com/Motmedel/utils_go/pkg/schema/log"
+	"github.com/florianl/go-nflog/v2"
+	"github.com/mdlayher/netlink"
+	"github.com/vphpersson/firewall_logging/pkg/firewall_logging"
 )
 
 const dataset = "firewall_logging"
@@ -29,7 +31,7 @@ func main() {
 					&slog.HandlerOptions{
 						AddSource:   false,
 						Level:       slog.LevelInfo,
-						ReplaceAttr: ecs.TimestampReplaceAttr,
+						ReplaceAttr: schemaLog.ReplaceAttr,
 					},
 				),
 				Extractors: []motmedelLog.ContextExtractor{
@@ -80,29 +82,8 @@ func main() {
 		func(attrs nflog.Attribute) int {
 			timestamp := time.Now()
 
-			//var payload []byte
-			//if payloadPtr := attrs.Payload; payloadPtr != nil {
-			//	payload = *payloadPtr
-			//}
-			//
-			//if prefixPtr := attrs.Prefix; prefixPtr != nil {
-			//	prefix := *prefixPtr
-			//
-			//	// Special cases
-			//
-			//	if strings.HasPrefix(prefix, "FIRST_CLIENT_DATA-") && len(payload) == 0 {
-			//		fmt.Println("skipping")
-			//		return 0
-			//	}
-			//
-			//	if strings.HasPrefix(prefix, "FIRST_SERVER_DATA-") && len(payload) == 0 {
-			//		fmt.Println("skipping")
-			//		return 0
-			//	}
-			//}
-
-			document := &ecs.Base{
-				Event: &ecs.Event{
+			document := &schema.Base{
+				Event: &schema.Event{
 					Dataset: dataset,
 					Reason:  "A packet matched a firewall logging rule.",
 				},
@@ -114,12 +95,10 @@ func main() {
 				document.Timestamp = timestamp.UTC().Format("2006-01-02T15:04:05.999999999Z")
 			}
 
-			var suffix string
+			document.Message = document.MakeConnectionMessage()
 			if ecsRule := document.Rule; ecsRule != nil {
-				suffix = fmt.Sprintf("%s-%s %s", ecsRule.Ruleset, ecsRule.Name, document.Event.Action)
+				document.Message += fmt.Sprintf("- %s-%s %s", ecsRule.Ruleset, ecsRule.Name, document.Event.Action)
 			}
-
-			document.Message = ecs.MakeConnectionMessage(document, suffix)
 
 			documentData, err := json.Marshal(document)
 			if err != nil {
@@ -153,4 +132,3 @@ func main() {
 
 	<-ctx.Done()
 }
-
