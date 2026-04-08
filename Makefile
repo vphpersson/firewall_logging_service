@@ -1,5 +1,5 @@
 BINARY   := firewall_logging_service
-IMAGE    := firewall_logging_service
+IMAGE    := firewall_logging
 REGISTRY := registry.vvvp.se
 GO_ENV   := GOEXPERIMENT=jsonv2
 
