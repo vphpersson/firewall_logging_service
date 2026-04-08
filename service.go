@@ -101,7 +101,7 @@ func main() {
 
 			document.Message = document.MakeConnectionMessage()
 			if ecsRule := document.Rule; ecsRule != nil {
-				document.Message += fmt.Sprintf(" - %s-%s", ecsRule.Ruleset, ecsRule.Name)
+				document.Message += fmt.Sprintf(" %s-%s", ecsRule.Ruleset, ecsRule.Name)
 				if action := document.Event.Action; action != "" {
 					document.Message += " " + action
 				}
