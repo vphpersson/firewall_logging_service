@@ -2,12 +2,13 @@ package main
 
 import (
 	"context"
-	"encoding/json"
+	"encoding/json/v2"
 	"flag"
 	"fmt"
 	"log/slog"
 	"os"
-	"sync"
+	"os/signal"
+	"syscall"
 	"time"
 
 	motmedelErrors "github.com/Motmedel/utils_go/pkg/errors"
@@ -45,8 +46,11 @@ func main() {
 	groupFlag := flag.Int("group", 0, "The NFLOG group to listen on.")
 	flag.Parse()
 
-	if groupFlag == nil || *groupFlag == 0 {
-		logger.FatalWithExitingMessage("No group was provided.", nil)
+	if *groupFlag <= 0 || *groupFlag > 65535 {
+		logger.FatalWithExitingMessage(
+			"A valid group must be provided (1-65535).",
+			motmedelErrors.NewWithTrace(fmt.Errorf("invalid group: %d", *groupFlag), *groupFlag),
+		)
 	}
 
 	group := uint16(*groupFlag)
@@ -74,8 +78,8 @@ func main() {
 		)
 	}
 
-	ctx := context.Background()
-	var printLock sync.Mutex
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
 
 	err = netfilterLogHandler.RegisterWithErrorFunc(
 		ctx,
@@ -92,12 +96,15 @@ func main() {
 			firewall_logging.EnrichWithNflogAttribute(&attrs, document)
 
 			if document.Timestamp == "" {
-				document.Timestamp = timestamp.UTC().Format("2006-01-02T15:04:05.999999999Z")
+				document.Timestamp = timestamp.UTC().Format(time.RFC3339Nano)
 			}
 
 			document.Message = document.MakeConnectionMessage()
 			if ecsRule := document.Rule; ecsRule != nil {
-				document.Message += fmt.Sprintf("- %s-%s %s", ecsRule.Ruleset, ecsRule.Name, document.Event.Action)
+				document.Message += fmt.Sprintf(" - %s-%s", ecsRule.Ruleset, ecsRule.Name)
+				if action := document.Event.Action; action != "" {
+					document.Message += " " + action
+				}
 			}
 
 			documentData, err := json.Marshal(document)
@@ -109,9 +116,12 @@ func main() {
 				return 0
 			}
 
-			printLock.Lock()
-			defer printLock.Unlock()
-			fmt.Println(string(documentData))
+			if _, err := os.Stdout.Write(append(documentData, '\n')); err != nil {
+				logger.Error(
+					"An error occurred when writing a document to stdout.",
+					motmedelErrors.NewWithTrace(fmt.Errorf("os stdout write: %w", err)),
+				)
+			}
 
 			return 0
 		},

@@ -3,10 +3,10 @@ module github.com/vphpersson/firewall_logging_service
 go 1.25.0
 
 require (
-	github.com/Motmedel/utils_go v0.0.457
+	github.com/Motmedel/utils_go v0.0.458
 	github.com/florianl/go-nflog/v2 v2.3.0
 	github.com/mdlayher/netlink v1.10.0
-	github.com/vphpersson/firewall_logging v0.0.5
+	github.com/vphpersson/firewall_logging v0.0.7
 )
 
 require (
