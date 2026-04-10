@@ -1,6 +1,6 @@
 BINARY   := firewall_logging_service
 IMAGE    := firewall_logging
-REGISTRY := registry.vvvp.se
+REGISTRY := registry.home.arpa
 GO_ENV   := GOEXPERIMENT=jsonv2
 
 .PHONY: all update build test fmt vet image publish clean
